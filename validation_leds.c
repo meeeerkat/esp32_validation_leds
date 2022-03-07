@@ -34,12 +34,6 @@ void init_validation_leds(void)
     gpio_set_direction(FAILURE_LED, GPIO_MODE_OUTPUT);
     gpio_set_level(SUCCESS_LED, 0);
     gpio_set_level(FAILURE_LED, 0);
-    /*
-    gpio_config_t leds_io_conf = {};
-    leds_io_conf.pin_bit_mask = (1ULL << VALID_LED) || (1ULL << INVALID_LED);
-    leds_io_conf.mode = GPIO_MODE_OUTPUT;
-    gpio_config(&leds_io_conf);
-    */
 
     blink_led_command_queue = xQueueCreate(5, sizeof(uint32_t));
     xTaskCreate(validation_leds_task, "validation_leds_task", 2048, NULL, 5, NULL);
